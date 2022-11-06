@@ -24,13 +24,32 @@ insert into movie values(103,"RadheSyam","Prabhas","Pooja",200,4);
 insert into movie values(103,"ps1","karthi","Trisha",250,7);
 select * from user;
 select *from movie;
+select movieName from movie where hero="Mahesh babu";
+
+
+#3)Get List of all the movies watched by the User
 select * from movie m, user u where m.UserId=u.UserId and u.FirstName="Bhagya";
-select movieName, ticketPrice from movie m, user u where m.userId=u.userId and u.UserId=101 and m.ticketPrice>150;
+select movieName from movie m,user u where m.userId=u.userId and u.userId=101;
+
+
+#4)Get List of movies watched by the User and which movie ticket price is more than 150
+select * from movie m, user u where m.userId=u.userId and u.UserId=101 and m.ticketPrice>150;
+select movieName,ticketPrice from movie m, user u where m.userId=u.userId and u.UserId=101 and m.ticketPrice>150;
 select movieName, ticketPrice from movie m, user u where m.userId=u.userId and m.ticketPrice>150;
+
+
+#5)Get List of movies watched by the User and which movie rating below 5 out of 10
 select movieName, rating from movie m, user u where m.userId=u.userId and m.rating<5;
+select * from movie m, user u where m.userId=u.userId and m.rating<5;
+
+
+#6) Get List of movies watched by the User and where heroin repeats more than or equal to 2 times
 select m.movieName, m.heroin, u.userId from movie m, user u where m.userId=u.userId group by heroin having count(heroin)>=2;
 SELECT movieName, heroin
 FROM movie m1 
 WHERE (SELECT COUNT(heroin) FROM movie m2 ,user u  where u.userId=101 and u.userId=m1.userId and  m1.heroin=m2.heroin) >= 2;
+
+
+#7)Print total and avg amount he spent on the movies
 select sum(ticketPrice) , avg(ticketPrice) from user u,movie m 
 where u.userId=m.userId and u.FirstName="Bhagya";
